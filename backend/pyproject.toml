@@ -7,8 +7,39 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+fastapi = "^0.111"
+pydantic = "^2.7"
+sqlalchemy = "^2.0"
+psycopg = { extras = ["binary"], version = "^3.1" }
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.ruff.lint]
+select = [
+    "B", # flake8-bugbear
+    "E", # pycodestyle error
+    "F", # pyflakes
+    "I", # isort
+    "UP", # pyupgrade
+    "W", # pycodestyle warning
+]
+ignore = [
+    "B008", # do not perform function calls in argument defaults
+]
+ignore-init-module-imports = true
+
+[tool.ruff.lint.isort]
+order-by-type = false
