@@ -6,7 +6,7 @@ import NavigationBar from './components/NavigationBar.vue'
   <NavigationBar />
   <main class="container m-4 flex justify-center">
     <section class="text-center max-w-3xl">
-      <h1 class="text-4xl">Introduction</h1>
+      <h1 class="text-4xl">Process Management System</h1>
       <p class="m-2 mt-4">
         This application allows you to record events when operators are working on a process during
         their shift. There are three main actions you can take, described below.
