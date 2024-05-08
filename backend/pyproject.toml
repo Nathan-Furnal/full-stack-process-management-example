@@ -2,7 +2,7 @@
 name = "backend"
 version = "0.1.0"
 description = ""
-authors = ["Nathan Furnal <nathan@adimian.com>"]
+authors = ["Nathan Furnal <nathanfurnal.dev@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
