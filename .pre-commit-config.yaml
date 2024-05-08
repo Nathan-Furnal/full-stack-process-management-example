@@ -52,8 +52,10 @@ repos:
         exclude: .config.js$
         types_or: [javascript, jsx, ts, tsx, vue]
         additional_dependencies:
-          - eslint@8.57.0 # Use the actual version in package.json[devDependencies] if it exists
-          - eslint-plugin-vue@9.23.0
+          - eslint@<9 # https://stackoverflow.com/a/78369728/9479128
+          - eslint-plugin-vue@9.25.0
+          - "@rushstack/eslint-patch@1.10.2"
+          - "@vue/eslint-config-typescript@13.0.0"
           - "@babel/eslint-parser@7.24.5"
         args: ["--config", "frontend/.eslintrc.cjs"] # Point to config here
 
