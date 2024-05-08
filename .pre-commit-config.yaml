@@ -60,5 +60,7 @@ repos:
     rev: v3.1.0
     hooks:
       - id: prettier
+        types_or: [javascript, jsx, ts, tsx, css, html, vue, json]
         additional_dependencies:
           - prettier@3.2.5 # SEE: https://github.com/pre-commit/pre-commit/issues/3133
+        args: ["--config", "frontend/.prettierrc.json"]
