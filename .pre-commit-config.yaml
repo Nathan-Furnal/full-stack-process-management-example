@@ -49,6 +49,7 @@ repos:
     rev: v9.2.0 # Use latest release here
     hooks:
       - id: eslint
+        exclude: .config.js$
         types_or: [javascript, jsx, ts, tsx, vue]
         additional_dependencies:
           - eslint@8.57.0 # Use the actual version in package.json[devDependencies] if it exists
