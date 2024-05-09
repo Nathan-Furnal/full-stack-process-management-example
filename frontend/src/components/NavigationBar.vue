@@ -1,4 +1,3 @@
-<script setup lang="ts"></script>
 <template>
   <nav class="border-b-2 border-b-black mt-5 ml-2 mr-2">
     <ol class="list-none flex justify-center mb-5">
