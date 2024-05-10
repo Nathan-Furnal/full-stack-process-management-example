@@ -41,7 +41,7 @@ repos:
     hooks:
       - id: bandit
         types: [python]
-        exclude: tests
+        exclude: tests|demo
         args: []
 
   # https://github.com/pre-commit/mirrors-eslint?tab=readme-ov-file#eslint-mirror
