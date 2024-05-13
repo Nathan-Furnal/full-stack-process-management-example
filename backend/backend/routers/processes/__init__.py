@@ -1,6 +1,6 @@
 from datetime import date
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from backend.models.process import ProcessPerformance
 
@@ -24,8 +24,8 @@ class GetEvent(BaseModel):
     id: int
     type: str
     explanation: str
-    attachements: list[GetAttachment]
-    links: list[GetLink]
+    attachments: list[GetAttachment] = Field(default_factory=list)
+    links: list[GetLink] = Field(default_factory=list)
     process_id: int | None
 
 
@@ -37,4 +37,4 @@ class GetProcess(BaseModel):
     working_date: date
     service: str
     performance: ProcessPerformance
-    events: list[GetEvent]
+    events: list[GetEvent] = Field(default_factory=list)
