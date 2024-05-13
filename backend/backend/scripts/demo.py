@@ -8,11 +8,7 @@ from backend.models import Attachement, Event, Link, Process
 from backend.models.process import ProcessPerformance
 
 
-def sample(pop, k):
-    return random.sample(pop, k)
-
-
-def rnd_items(session: Session, db_attr: InstrumentedAttribute, filters: list):
+def get_filter_items(session: Session, db_attr: InstrumentedAttribute, filters: list):
     table = db_attr.parent
     return session.query(table).filter(db_attr.in_(filters)).all()
 
@@ -76,32 +72,32 @@ def create_events(session=next(get_session())):
         {
             "type": "random",
             "explanation": "This is a demo event",
-            "links": rnd_items(session, lurl, sample(urls, 4)),
-            "attachments": rnd_items(session, afname, sample(filenames, 4)),
+            "links": get_filter_items(session, lurl, urls[:2]),
+            "attachments": get_filter_items(session, afname, filenames[:2]),
         },
         {
             "type": "example",
             "explanation": "This is created for example purposes",
-            "links": rnd_items(session, lurl, sample(urls, 4)),
-            "attachments": rnd_items(session, afname, sample(filenames, 4)),
+            "links": get_filter_items(session, lurl, urls[2:5]),
+            "attachments": get_filter_items(session, afname, filenames[2:6]),
         },
         {
             "type": "normal",
             "explanation": "This is another demo",
-            "links": rnd_items(session, lurl, sample(urls, 4)),
-            "attachments": rnd_items(session, afname, sample(filenames, 4)),
+            "links": get_filter_items(session, lurl, urls[5:6]),
+            "attachments": get_filter_items(session, afname, filenames[6:7]),
         },
         {
             "type": "example",
             "explanation": "Secret?",
-            "links": rnd_items(session, lurl, sample(urls, 4)),
-            "attachments": rnd_items(session, afname, sample(filenames, 4)),
+            "links": get_filter_items(session, lurl, urls[6:8]),
+            "attachments": get_filter_items(session, afname, filenames[7:8]),
         },
         {
             "type": "normal",
             "explanation": "This is an official statement",
-            "links": rnd_items(session, lurl, sample(urls, 4)),
-            "attachments": rnd_items(session, afname, sample(filenames, 4)),
+            "links": get_filter_items(session, lurl, urls[8:]),
+            "attachments": get_filter_items(session, afname, filenames[8:]),
         },
     ]
     for info in infos:
