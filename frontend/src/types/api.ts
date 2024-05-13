@@ -14,7 +14,7 @@ export type Event = {
   id: number
   type: string
   explanation: string
-  attachements: Attachment[]
+  attachments: Attachment[]
   links: Link[]
   process_id: number | undefined
 }
