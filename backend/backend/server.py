@@ -9,7 +9,7 @@ def app_maker() -> FastAPI:
     # https://fastapi.tiangolo.com/tutorial/cors/
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["http://localhost:8080"],
+        allow_origins=["http://localhost:5173"],  # Vue frontend
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
