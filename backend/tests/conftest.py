@@ -1,7 +1,9 @@
+from typing import Any, Generator
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, StaticPool
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
 
 from backend.db import Base, get_session
 from backend.main import app
@@ -29,7 +31,7 @@ def session_maker(engine):
 
 
 @pytest.fixture
-def session(session_maker):
+def session(session_maker) -> Generator[Session, Any, Any]:
     try:
         sess = session_maker()
         yield sess
