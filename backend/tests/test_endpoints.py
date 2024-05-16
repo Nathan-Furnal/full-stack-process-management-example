@@ -48,3 +48,57 @@ def test_get_all_processes(webclient, dummy_process):
     data = res.json()
     assert len(data) == 1
     assert data[0]["id"] == dummy_process.id
+
+
+def test_create_process(webclient, session):
+    payload = {
+        "business_date": "2024-05-16",
+        "working_date": "2024-05-17",
+        "service": "Demo service",
+        "performance": "GREEN",
+        "events": [
+            {
+                "type": "Example event",
+                "explanation": "Explanation for an example event",
+                "links": [{"url": "http://example.com"}, {"url": "https://demo.test"}],
+                "attachments": [
+                    {"filename": "example.txt"},
+                    {"filename": "demo.py"},
+                    {"filename": "values.csv"},
+                ],
+            },
+            {
+                "type": "Another event",
+                "explanation": "Explanation for yet another event",
+                "links": [{"url": "http://demo.be"}, {"url": "https://fake.test"}],
+                "attachments": [
+                    {"filename": "fake.data.txt"},
+                    {"filename": "msg.tar.gz"},
+                    {"filename": "presentation.pptx"},
+                ],
+            },
+        ],
+    }
+    res = webclient.post("/processes/", json=payload)
+    assert res.status_code == 200, res.text
+    data = res.json()
+
+    process = session.get(Process, data["id"])
+    assert process
+    assert process.service == payload["service"]
+    assert str(process.working_date) == payload["working_date"]
+    assert str(process.business_date) == payload["business_date"]
+    assert process.performance.value == payload["performance"]
+    assert {e.type for e in process.events} == {e["type"] for e in payload["events"]}
+    zipped_comparable_events = zip(  # Make sure events are aligned for comparison
+        sorted(process.events, key=lambda e: e.type),
+        sorted(payload["events"], key=lambda e: e["type"]),
+    )
+    # Deep equality
+    for db_event, dict_event in zipped_comparable_events:
+        assert {link.url for link in db_event.links} == {
+            link["url"] for link in dict_event["links"]
+        }
+        assert {attach.filename for attach in db_event.attachments} == {
+            attachment["filename"] for attachment in dict_event["attachments"]
+        }
