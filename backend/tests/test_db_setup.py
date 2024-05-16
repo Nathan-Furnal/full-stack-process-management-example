@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from backend.models import Attachement, Event, Link, Process
+from backend.models import Attachment, Event, Link, Process
 from backend.models.process import ProcessPerformance
 
 
@@ -15,13 +15,13 @@ def test_can_create_link(session):
     assert link.url == url
 
 
-def test_can_create_attachement(session):
+def test_can_create_attachment(session):
     filename = "example_file.txt"
-    attach = Attachement(filename=filename)
+    attach = Attachment(filename=filename)
     session.add(attach)
     session.commit()
 
-    attach = session.get(Attachement, attach.id)
+    attach = session.get(Attachment, attach.id)
     assert attach
     assert attach.filename == filename
 
@@ -30,7 +30,7 @@ def test_can_create_event(session):
     urls = ["file://example1", "file://example2"]
     filenames = ["example1.txt", "example2.txt"]
     links = []
-    attachements = []
+    attachments = []
     data = {"type": "demo event", "explanation": "Demo explanation"}
     event = Event(**data)
     session.add(event)
@@ -39,8 +39,8 @@ def test_can_create_event(session):
         links.append(Link(url=u, event=event))
     session.add_all(links)
     for f in filenames:
-        attachements.append(Attachement(filename=f, event=event))
-    session.add_all(attachements)
+        attachments.append(Attachment(filename=f, event=event))
+    session.add_all(attachments)
     session.commit()
 
     event = session.get(Event, event.id)
@@ -48,7 +48,7 @@ def test_can_create_event(session):
     assert event.type == data["type"]
     assert event.explanation == data["explanation"]
     assert {link.id for link in links} == {link.id for link in event.links}
-    assert {att.id for att in attachements} == {att.id for att in event.attachments}
+    assert {att.id for att in attachments} == {att.id for att in event.attachments}
 
 
 def test_can_create_process(session):

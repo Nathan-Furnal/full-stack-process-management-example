@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from backend.models.event import Event
 
 
-class Attachement(Base):
+class Attachment(Base):
     __tablename__ = "attachment"
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -20,4 +20,4 @@ class Attachement(Base):
     event: Mapped[Event] = relationship(back_populates="attachments")
 
     def __repr__(self) -> str:
-        return f"Attachement(id={self.id!r}, filename={self.filename!r})"
+        return f"Attachment(id={self.id!r}, filename={self.filename!r})"

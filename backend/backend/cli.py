@@ -1,11 +1,11 @@
 import argparse
 
 from backend.db import Base, get_engine
-from backend.models import Attachement, Event, Link, Process
+from backend.models import Attachment, Event, Link, Process
 from backend.scripts.demo import create_processes
 
 # Make models available in the namespace such that Base.metadata finds them
-_ = Process, Event, Link, Attachement
+_ = Process, Event, Link, Attachment
 
 
 def setup():

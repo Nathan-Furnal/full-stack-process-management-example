@@ -4,7 +4,7 @@ from datetime import date, timedelta
 from sqlalchemy.orm import InstrumentedAttribute, Session
 
 from backend.db import get_session
-from backend.models import Attachement, Event, Link, Process
+from backend.models import Attachment, Event, Link, Process
 from backend.models.process import ProcessPerformance
 
 
@@ -41,7 +41,7 @@ def create_links(session=next(get_session())):
 
 
 def create_attachments(session=next(get_session())):
-    attachements = []
+    attachments = []
     filenames = [
         "example.txt",
         "random.zip",
@@ -55,8 +55,8 @@ def create_attachments(session=next(get_session())):
         "IAMBlue.rgb",
     ]
     for f in filenames:
-        attachements.append(Attachement(filename=f))
-    session.add_all(attachements)
+        attachments.append(Attachment(filename=f))
+    session.add_all(attachments)
     session.commit()
     return filenames
 
@@ -65,7 +65,7 @@ def create_events(session=next(get_session())):
     urls = create_links(session)
     filenames = create_attachments(session)
     lurl = Link.url
-    afname = Attachement.filename
+    afname = Attachment.filename
 
     events = []
     infos = [
