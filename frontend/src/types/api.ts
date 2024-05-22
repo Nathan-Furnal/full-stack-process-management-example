@@ -19,6 +19,15 @@ export type Event = {
   process_id: number | undefined
 }
 
+export type PostEvent = {
+  id: undefined
+  type: string
+  explanation: string
+  attachments: Attachment[]
+  links: Link[]
+  process_id: number | undefined
+}
+
 export type ProcessPerformance = 'GREEN' | 'ORANGE' | 'RED' | 'GRAY'
 
 export type Process = {
@@ -28,4 +37,12 @@ export type Process = {
   service: string
   performance: ProcessPerformance
   events: Event[]
+}
+
+export type PostProcess = {
+  business_date: Date | undefined
+  working_date: Date | undefined
+  service: string | undefined
+  performance: ProcessPerformance | undefined
+  events: PostEvent[]
 }
