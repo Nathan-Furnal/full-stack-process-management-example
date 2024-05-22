@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Event } from '@/types/api'
+import type { Event, PostEvent } from '@/types/api'
 
-defineProps<{ event: Event }>()
+defineProps<{ event: Event | PostEvent }>()
 </script>
 
 <template>
