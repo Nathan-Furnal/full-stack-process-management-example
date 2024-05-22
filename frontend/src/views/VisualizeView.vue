@@ -7,7 +7,7 @@ const processes = ref<Process[]>([])
 
 const fetchProcesses = async () => {
   try {
-    const response = await fetch(' http://127.0.0.1:8000/processes/')
+    const response = await fetch('http://127.0.0.1:8000/processes/')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
