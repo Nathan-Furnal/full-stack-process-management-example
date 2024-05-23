@@ -4,6 +4,9 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <nav class="border-b-2 border-b-black mt-5 ml-2 mr-2">
+    <div class="flex align-middle ml-4">
+      <RouterLink to="/" class="underline">Home</RouterLink>
+    </div>
     <ol class="list-none flex justify-center mb-5">
       <li class="inline-block ml-10 text-xl">
         <RouterLink to="/processes/visualize" class="underline">Visualize</RouterLink>
@@ -19,6 +22,11 @@ import { RouterLink } from 'vue-router'
 </template>
 <style scoped>
 nav > ol > li > a:hover {
+  background-color: black;
+  color: white;
+}
+
+nav > div > a:hover {
   background-color: black;
   color: white;
 }
