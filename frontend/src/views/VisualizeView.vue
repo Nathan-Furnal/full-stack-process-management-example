@@ -22,8 +22,8 @@ fetchProcesses()
 
 <template>
   <div class="container flex flex-wrap justify-center">
-    <div v-for="p of processes" :key="p.id" class="w-1/2 m-4 p-4 border-2 border-black">
-      <ProcessCard :process="p" />
+    <div v-for="p of processes" :key="p.id" class="w-1/2 min-w-fit m-4 p-4 border-2 border-black">
+      <ProcessCard :process="p" @process-deleted="fetchProcesses" />
     </div>
   </div>
 </template>

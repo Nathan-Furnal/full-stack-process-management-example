@@ -18,11 +18,23 @@ function bullets(color: ProcessPerformance) {
   }
 }
 
+const emit = defineEmits(['process-deleted']) // Define the event
+
+const deleteProcess = async (pid: number) => {
+  try {
+    await fetch(`http://127.0.0.1:8000/processes/${pid}`, { method: 'DELETE' })
+    emit('process-deleted')
+  } catch (error) {
+    console.log('Error', error)
+  }
+}
+
 defineProps<{ process: Process }>()
 </script>
 
 <template>
   <div class="flex-row">
+    <button type="button" @click="deleteProcess(process.id)">&#10060;</button>
     <div class="flex justify-between">
       <p>{{ process.business_date }}</p>
       <p class="flex space-x-1" v-html="bullets(process.performance)"></p>
