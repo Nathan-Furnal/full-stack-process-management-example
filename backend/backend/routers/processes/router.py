@@ -53,3 +53,10 @@ async def get_process(pid: int, session: SessionDep):
 @router.post("/", response_model=GetProcess)
 async def create_process(payload: PostProcess, session: SessionDep):
     return create_process_from_payload(session=session, payload=payload)
+
+
+@router.delete("/{pid}")
+async def delete_process(pid: int, session: SessionDep):
+    process = session.get(Process, pid)
+    session.delete(process)
+    session.commit()

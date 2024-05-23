@@ -102,3 +102,20 @@ def test_create_process(webclient, session):
         assert {attach.filename for attach in db_event.attachments} == {
             attachment["filename"] for attachment in dict_event["attachments"]
         }
+
+
+def test_delete_process(webclient, dummy_process, session):
+    # Ensure process exists
+    res = webclient.get(f"/processes/{dummy_process.id}")
+    assert res.status_code == 200, res.text
+
+    data = res.json()
+
+    assert data["id"] == dummy_process.id
+
+    # Delete and check it's not in DB anymore
+    res = webclient.delete(f"/processes/{dummy_process.id}")
+    assert res.status_code == 200, res.text
+
+    process = session.get(Process, dummy_process.id)
+    assert not process
