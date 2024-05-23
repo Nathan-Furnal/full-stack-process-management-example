@@ -4,9 +4,19 @@ export type Link = {
   event_id: number | undefined
 }
 
+export type PostLink = {
+  url: string | undefined
+  event_id: number | undefined
+}
+
 export type Attachment = {
   id: number
   filename: string
+  event_id: number | undefined
+}
+
+export type PostAttachment = {
+  filename: string | undefined
   event_id: number | undefined
 }
 
@@ -14,17 +24,24 @@ export type Event = {
   id: number
   type: string
   explanation: string
-  attachments: Attachment[]
-  links: Link[]
+  attachments: PostAttachment[]
+  links: PostLink[]
   process_id: number | undefined
 }
 
 export type PostEvent = {
-  id: undefined
-  type: string
-  explanation: string
-  attachments: Attachment[]
-  links: Link[]
+  type: string | undefined
+  explanation: string | undefined
+  attachments: PostAttachment[]
+  links: PostLink[]
+  process_id: number | undefined
+}
+
+export type PostEventFormContent = {
+  type: string | undefined
+  explanation: string | undefined
+  attachments: string
+  links: string
   process_id: number | undefined
 }
 
