@@ -119,8 +119,8 @@ function handleProcessSubmit() {
             <label for="explanation">Attachments:</label>
             <textarea
               v-model="formEvent.attachments"
-              name="explanation"
-              id="explanation"
+              name="attachments"
+              id="attachments"
               rows="2"
               :class="[commonCls, 'placeholder:italic placeholder:text-slate-400 block w-full']"
             >
@@ -131,8 +131,8 @@ function handleProcessSubmit() {
             <label for="explanation">Links:</label>
             <textarea
               v-model="formEvent.links"
-              name="explanation"
-              id="explanation"
+              name="links"
+              id="links"
               rows="2"
               :class="[commonCls, 'placeholder:italic placeholder:text-slate-400 block w-full']"
             >
