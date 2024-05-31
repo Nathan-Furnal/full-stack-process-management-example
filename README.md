@@ -2,11 +2,14 @@
 
 A full-stack project using FastAPI as the backend and Vue as the frontend.
 
-In this app, you can create and visualize processes managed by users.
+In this fake app, you can create and visualize processes managed by users.
 One page allows to create new processes, another to visualize them.
 
 # Demo
 
+Here under you'll see a short demo with the main components and interactions available to the user.
+
+[Screencast_20240523_195502.webm](https://github.com/Nathan-Furnal/full-stack-process-management-example/assets/45597572/e1f7ca5a-4be8-4541-99a7-096360115d82)
 
 
 # Running the project
