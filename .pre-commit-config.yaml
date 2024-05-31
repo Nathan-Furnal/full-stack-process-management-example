@@ -1,7 +1,7 @@
 exclude: '.*\.svg$'
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.3
+    rev: v0.4.6
     hooks:
       - id: ruff
         types: [python]
@@ -46,7 +46,7 @@ repos:
 
   # https://github.com/pre-commit/mirrors-eslint?tab=readme-ov-file#eslint-mirror
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v9.2.0 # Use latest release here
+    rev: v9.3.0 # Use latest release here
     hooks:
       - id: eslint
         exclude: .config.js$
